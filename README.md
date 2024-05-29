@@ -5,6 +5,8 @@
 - [The Images](#the-images)
 - [The HTML](#the-html)
 - [The CSS](#the-css)
+- [Custom Properties](#custom-properties)
+- [Ground](#ground-js)
 
 ## Introduction
 Do you remember when you were a kid and the internet went out? The only thing left to do was the Dinosaur jumping game on Chrome. Does that ring a bell? Does that feel nostalgic? It did for me. _That's why I recreated it._
@@ -119,3 +121,32 @@ _**P.S:**_ Use this trick to center things on position absolute. First set the *
   bottom: 0;
 }
 ```
+## Custom Properties
+This is the easy but important part. We have 3 functions here:
+1. Get Custom Property
+
+Pass it an element and the propery you want to get the value of, it will return the value, or 0, if the value doesn't exist.
+```js
+export function getCustomProperty(elem, prop) {
+  return parseFloat(getComputedStyle(elem).getPropertyValue(prop)) || 0
+}
+```
+2. Set Custom Propery
+
+Pass it an element, the propery and the value of the propery you want to set. The value of the propery before setting doesn't have to be 0.
+```js
+export function setCustomProperty(elem, prop, value) {
+  elem.style.setProperty(prop, value)
+}
+```
+3. Increment Custom Propery
+
+Pass it an element, the propery and the increment. Simple calls the previously mentioned function.
+```js
+export function incrementCustomProperty(elem, prop, inc) {
+  setCustomProperty(elem, prop, getCustomProperty(elem, prop) + inc)
+}
+
+```
+## Ground js
+This is the part where we create the illusion that the ground is moving, although it's just a repeating image. 
